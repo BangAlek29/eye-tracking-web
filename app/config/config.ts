@@ -66,6 +66,17 @@ export const config = {
     enableWebhook: process.env.NEXT_PUBLIC_ENABLE_WEBHOOK !== "false",
     enableCsvExport: process.env.NEXT_PUBLIC_ENABLE_CSV_EXPORT !== "false",
   },
+
+  // WebGazer Configuration
+  webgazer: {
+    showPredictionPoints: process.env.NEXT_PUBLIC_WEBGAZER_SHOW_PREDICTION !== "false",
+    showVideo: process.env.NEXT_PUBLIC_WEBGAZER_SHOW_VIDEO === "true",
+    showFaceOverlay: process.env.NEXT_PUBLIC_WEBGAZER_SHOW_FACE_OVERLAY === "true",
+    showFaceFeedbackBox: process.env.NEXT_PUBLIC_WEBGAZER_SHOW_FEEDBACK_BOX === "true",
+    predictionSmoothingSize: parseInt(process.env.NEXT_PUBLIC_WEBGAZER_SMOOTHING_SIZE || "5"),
+    calibrationPoints: parseInt(process.env.NEXT_PUBLIC_WEBGAZER_CALIBRATION_POINTS || "9"),
+    calibrationClicksPerPoint: parseInt(process.env.NEXT_PUBLIC_WEBGAZER_CLICKS_PER_POINT || "5"),
+  },
 };
 
 export default config;
