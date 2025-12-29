@@ -123,7 +123,7 @@ export default function VideoLearningTracker({
         return faceMesh;
     };
 
-    // Initialize WebGazer
+    // Initialize WebGazer with timeout
     const initWebGazer = async () => {
         const webgazer = (await import("webgazer")).default;
         webgazerRef.current = webgazer;
@@ -140,7 +140,19 @@ export default function VideoLearningTracker({
             currentWebGazerDataRef.current = smoothed;
         });
 
-        await webgazer.begin();
+        // Add timeout for webgazer.begin() to prevent hanging
+        const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error("WebGazer timeout - kamera mungkin sedang digunakan aplikasi lain")), 15000);
+        });
+
+        try {
+            await Promise.race([webgazer.begin(), timeoutPromise]);
+        } catch (err) {
+            // Try to cleanup if failed
+            try { webgazer.end(); } catch { /* ignore */ }
+            throw err;
+        }
+
         return webgazer;
     };
 

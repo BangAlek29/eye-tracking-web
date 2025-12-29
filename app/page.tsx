@@ -26,7 +26,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mt-10 mb-15">
           <h1 className="text-3xl font-bold text-white mb-2">
-            Student Focus Detection
+            Video Learning Eye Tracking System
           </h1>
         </div>
 
@@ -61,21 +61,6 @@ export default function Home() {
               <option value="combined">MediaPipe + WebGazer</option>
             </select>
           </div>
-
-          {/* Data count badge */}
-          {dataCount > 0 && (
-            <div className="bg-green-600/20 border border-green-500/50 text-green-400 px-4 py-2 rounded-lg text-sm">
-              {dataCount} data recorded
-            </div>
-          )}
-
-          {/* Analytics link */}
-          <a
-            href="/analytics"
-            className="bg-purple-600/20 border border-purple-500/50 text-purple-400 px-4 py-2 rounded-lg text-sm hover:bg-purple-600/30 transition-colors"
-          >
-            📊 Analytics
-          </a>
         </div>
 
         {/* Video Player with Tracking */}
