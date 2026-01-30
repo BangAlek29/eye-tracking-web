@@ -2,16 +2,16 @@
 
 ## Daftar Isi
 
-1. [Pengenalan Aplikasi](#-pengenalan-aplikasi)
-2. [Persyaratan Sistem](#-persyaratan-sistem)
-3. [Memulai Aplikasi](#-memulai-aplikasi)
-4. [Panduan Langkah demi Langkah](#-panduan-langkah-demi-langkah)
-5. [Mode Tracking](#-mode-tracking)
-6. [Proses Kalibrasi](#-proses-kalibrasi)
-7. [Menonton Video dengan Eye Tracking](#-menonton-video-dengan-eye-tracking)
-8. [Dashboard Analytics](#-dashboard-analytics)
-9. [Tips untuk Hasil Terbaik](#-tips-untuk-hasil-terbaik)
-10. [Troubleshooting](#-troubleshooting)
+1. [Pengenalan Aplikasi](#pengenalan-aplikasi)
+2. [Persyaratan Sistem](#persyaratan-sistem)
+3. [Cara Menjalankan Aplikasi](#cara-menjalankan-aplikasi)
+4. [Panduan Langkah demi Langkah](#panduan-langkah-demi-langkah)
+5. [Mode Tracking](#mode-tracking)
+6. [Proses Kalibrasi](#proses-kalibrasi)
+7. [Menonton Video dengan Eye Tracking](#menonton-video-dengan-eye-tracking)
+8. [Dashboard Analytics](#dashboard-analytics)
+9. [Tips untuk Hasil Bagus](#tips-untuk-hasil-bagus)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -29,18 +29,18 @@ Web Eye-Tracking adalah aplikasi berbasis web yang dirancang untuk mendeteksi da
 ## Persyaratan Sistem
 
 ### Hardware
-| Komponen | Minimum | Rekomendasi |
-|----------|---------|-------------|
-| Webcam | 720p | 1080p atau lebih tinggi |
-| RAM | 4 GB | 8 GB atau lebih |
-| Prosesor | Dual-core | Quad-core atau lebih |
-| Koneksi Internet | Stabil | Stabil |
+| Komponen         | Minimum   | Rekomendasi             |
+| ---------------- | --------- | ----------------------- |
+| Webcam           | 720p      | 1080p atau lebih tinggi |
+| RAM              | 4 GB      | 8 GB atau lebih         |
+| Prosesor         | Dual-core | Quad-core atau lebih    |
+| Koneksi Internet | Stabil    | Stabil                  |
 
 ### Software
-| Komponen | Keterangan |
-|----------|------------|
-| Browser | Google Chrome atau Microsoft Edge (versi terbaru) |
-| Izin Kamera | Harus diaktifkan di browser |
+| Komponen    | Keterangan                                        |
+| ----------- | ------------------------------------------------- |
+| Browser     | Google Chrome atau Microsoft Edge (versi terbaru) |
+| Izin Kamera | Harus diaktifkan di browser                       |
 
 ### Lingkungan
 - Pencahayaan: Ruangan dengan cahaya cukup, hindari backlight
@@ -52,24 +52,32 @@ Web Eye-Tracking adalah aplikasi berbasis web yang dirancang untuk mendeteksi da
 ## Cara Menjalankan Aplikasi
 
 ### Langkah 1: Akses Aplikasi
-Buka browser dan akses URL aplikasi yang diberikan oleh administrator.
+Buka browser dan akses URL.
 
-```http://localhost:3000```
+```
+https://eye-tracking-web-tan.vercel.app/
+```
 
 ### Langkah 2: Izinkan Akses Kamera
 Saat pertama kali mengakses, browser akan meminta izin untuk menggunakan kamera.
+
+![Screenshot: Popup izin kamera browser](screenshots/01_izin_kamera.png)
 
 1. Klik "Allow" atau "Izinkan" pada popup yang muncul
 2. Pastikan tidak ada aplikasi lain yang sedang menggunakan kamera
 
 > **Penting:** Tanpa izin kamera, eye tracking tidak dapat berfungsi.
+
 ---
 
 ## Panduan Langkah demi Langkah
 
 ### Alur Penggunaan Utama
 
-![Alur Penggunaan Utama](image.png)
+![Screenshot: Diagram alur penggunaan aplikasi](screenshots/02_alur_penggunaan.png)
+
+**Langkah-langkah:**
+1. Pilih Video → 2. Pilih Mode → 3. Klik Play → 4. Proses Kalibrasi → 5. Video Mulai → 6. Tonton Video → 7. Klik Selesai → 8. Lihat Analytics
 
 ---
 
@@ -78,33 +86,35 @@ Saat pertama kali mengakses, browser akan meminta izin untuk menggunakan kamera.
 Aplikasi menyediakan 3 mode tracking yang dapat dipilih:
 
 ### 1. MediaPipe Only
-| Aspek | Keterangan |
-|-------|------------|
-| Teknologi | MediaPipe FaceMesh |
-| Fungsi | Mendeteksi posisi pupil dan fokus |
-| Output | Arah pandangan (Kanan, Kiri, Atas, Bawah, Tengah) + Status fokus |
-| Kalibrasi | 5 detik melihat ke tengah layar |
-| Kelebihan | Cepat, ringan, akurasi tinggi untuk deteksi fokus |
+| Aspek     | Keterangan                                                       |
+| --------- | ---------------------------------------------------------------- |
+| Teknologi | MediaPipe FaceMesh                                               |
+| Fungsi    | Mendeteksi posisi pupil dan fokus                                |
+| Output    | Arah pandangan (Kanan, Kiri, Atas, Bawah, Tengah) + Status fokus |
+| Kalibrasi | 5 detik melihat ke tengah layar                                  |
+| Kelebihan | Cepat, ringan, akurasi tinggi untuk deteksi fokus                |
 
 ### 2. WebGazer Only
-| Aspek | Keterangan |
-|-------|------------|
-| Teknologi | WebGazer.js |
-| Fungsi | Melacak posisi pandangan di layar |
-| Output | Koordinat X, Y di layar + Region layar |
-| Kalibrasi | Klik 9 titik (masing-masing 5 kali) |
-| Kelebihan | Posisi pandangan lebih presisi |
+| Aspek     | Keterangan                             |
+| --------- | -------------------------------------- |
+| Teknologi | WebGazer.js                            |
+| Fungsi    | Melacak posisi pandangan di layar      |
+| Output    | Koordinat X, Y di layar + Region layar |
+| Kalibrasi | Klik 9 titik (masing-masing 5 kali)    |
+| Kelebihan | Posisi pandangan lebih presisi         |
 
 ### 3. Combined (MediaPipe + WebGazer)
-| Aspek | Keterangan |
-|-------|------------|
-| Teknologi | Kombinasi keduanya |
-| Fungsi | Deteksi fokus + Posisi pandangan di layar |
-| Output | Data lengkap dari kedua sistem |
-| Kalibrasi | MediaPipe (5 detik) + WebGazer (9 titik) |
-| Kelebihan | Data paling lengkap dan akurat |
+| Aspek     | Keterangan                                |
+| --------- | ----------------------------------------- |
+| Teknologi | Kombinasi keduanya                        |
+| Fungsi    | Deteksi fokus + Posisi pandangan di layar |
+| Output    | Data lengkap dari kedua sistem            |
+| Kalibrasi | MediaPipe (5 detik) + WebGazer (9 titik)  |
+| Kelebihan | Data paling lengkap dan akurat            |
 
 ### Cara Memilih Mode
+
+![Screenshot: Dropdown pemilihan mode tracking](screenshots/03_pilih_mode.png)
 
 1. Pada halaman utama, temukan dropdown "Mode"
 2. Klik dropdown dan pilih mode yang diinginkan
@@ -118,6 +128,8 @@ Aplikasi menyediakan 3 mode tracking yang dapat dipilih:
 
 Durasi: 5 detik
 
+![Screenshot: Tampilan kalibrasi MediaPipe dengan countdown](screenshots/04_kalibrasi_mediapipe.png)
+
 **Langkah-langkah:**
 1. Setelah klik play, akan muncul layar kalibrasi
 2. Tampilan akan menunjukkan countdown timer
@@ -130,6 +142,8 @@ Durasi: 5 detik
 ### Kalibrasi WebGazer
 
 Durasi: Tergantung kecepatan klik (~1-2 menit)
+
+![Screenshot: Tampilan kalibrasi WebGazer dengan 9 titik](screenshots/05_kalibrasi_webgazer.png)
 
 **Langkah-langkah:**
 1. Akan muncul 9 titik merah di layar (grid 3×3)
@@ -158,6 +172,8 @@ Durasi: Tergantung kecepatan klik (~1-2 menit)
 
 ### Memilih Video
 
+![Screenshot: Halaman utama dengan dropdown pemilihan video](screenshots/06_halaman_utama.png)
+
 1. Pada halaman utama, temukan dropdown "Video"
 2. Klik dropdown untuk melihat daftar video tersedia:
    - Biologi - Redominasi
@@ -169,6 +185,8 @@ Durasi: Tergantung kecepatan klik (~1-2 menit)
 
 ### Memulai Tracking
 
+![Screenshot: Tombol play dan area video player](screenshots/07_tombol_play.png)
+
 1. Klik tombol "Play" di tengah video
 2. Proses kalibrasi akan dimulai (sesuai mode)
 3. Video akan masuk ke mode "fullscreen" secara otomatis
@@ -178,15 +196,17 @@ Durasi: Tergantung kecepatan klik (~1-2 menit)
 
 ### Selama Menonton
 
-| Kontrol | Fungsi |
-|---------|--------|
-| *Play/Pause* | Klik video atau tombol pause |
-| *Slider Durasi* | Geser untuk lompat ke bagian tertentu |
-| *Fullscreen Toggle* | Tombol di pojok kanan bawah |
+![Screenshot: Video player dalam mode fullscreen dengan gaze indicator](screenshots/08_video_fullscreen.png)
 
-> **Reminder Fullscreen:** Jika Anda keluar dari fullscreen, akan muncul banner pengingat untuk kembali ke mode fullscreen agar tracking optimal.
+| Kontrol             | Fungsi                                |
+| ------------------- | ------------------------------------- |
+| *Play/Pause*        | Klik video atau tombol pause          |
+| *Slider Durasi*     | Geser untuk lompat ke bagian tertentu |
+| *Fullscreen Toggle* | Tombol di pojok kanan bawah           |
 
 ### Mengakhiri Sesi
+
+![Screenshot: Tombol selesai untuk mengakhiri tracking](screenshots/09_tombol_selesai.png)
 
 1. Setelah selesai menonton, klik tombol "Selesai"
 2. Data tracking akan disimpan
@@ -194,28 +214,36 @@ Durasi: Tergantung kecepatan klik (~1-2 menit)
 
 ---
 
-##  Dashboard Analytics
+## Dashboard Analytics
 
 Akses halaman Analytics untuk melihat hasil analisis eye tracking Anda.
 
-### Cara Mengakses :
+### Cara Mengakses
 Navigasi ke `/analytics` atau klik link "Analytics" di halaman utama.
+
+![Screenshot: Halaman dashboard analytics overview](screenshots/10_analytics_overview.png)
 
 ### Komponen Visualisasi
 
 #### 1. Focus Metrics
+
+![Screenshot: Komponen Focus Metrics dengan ring chart dan grid metrik](screenshots/11_focus_metrics.png)
+
 Metrik-metrik utama tentang fokus Anda:
 
-| Metrik | Keterangan |
-|--------|------------|
-| *Focus Percentage* | Persentase waktu fokus (ditampilkan dalam ring chart) |
-| *Total Focus Time* | Total durasi Anda dalam kondisi fokus |
-| *Distraction Count* | Jumlah kali Anda kehilangan fokus |
-| *Longest Focus Streak* | Durasi fokus terlama tanpa terdistraksi |
-| *Avg Focus Duration* | Rata-rata durasi setiap periode fokus |
-| *Watch Duration* | Total durasi video yang ditonton |
+| Metrik                 | Keterangan                                            |
+| ---------------------- | ----------------------------------------------------- |
+| *Focus Percentage*     | Persentase waktu fokus (ditampilkan dalam ring chart) |
+| *Total Focus Time*     | Total durasi Anda dalam kondisi fokus                 |
+| *Distraction Count*    | Jumlah kali Anda kehilangan fokus                     |
+| *Longest Focus Streak* | Durasi fokus terlama tanpa terdistraksi               |
+| *Avg Focus Duration*   | Rata-rata durasi setiap periode fokus                 |
+| *Watch Duration*       | Total durasi video yang ditonton                      |
 
 #### 2. Gaze Heatmap
+
+![Screenshot: Komponen Gaze Heatmap dengan visualisasi warna](screenshots/12_gaze_heatmap.png)
+
 Peta panas yang menunjukkan area mana yang paling sering Anda lihat.
 
 - *Warna Merah/Kuning*: Area yang sering dilihat (poin tinggi)
@@ -223,6 +251,9 @@ Peta panas yang menunjukkan area mana yang paling sering Anda lihat.
 - *Grid 6×9*: Membagi layar menjadi 54 zona
 
 #### 3. Attention Timeline
+
+![Screenshot: Komponen Attention Timeline dengan bar chart](screenshots/13_attention_timeline.png)
+
 Grafik batang yang menunjukkan tingkat fokus sepanjang durasi video.
 
 - *Sumbu X*: Waktu video (detik)
@@ -232,6 +263,9 @@ Grafik batang yang menunjukkan tingkat fokus sepanjang durasi video.
 - *Warna Merah*: Fokus rendah
 
 #### 4. Region Distribution Chart
+
+![Screenshot: Komponen Region Distribution dengan grid dan bar chart](screenshots/14_region_distribution.png)
+
 Visualisasi distribusi pandangan per region layar.
 
 - Grid 3×3 menunjukkan persentase per area
@@ -302,7 +336,6 @@ Jika belum ada data session, klik tombol "Load Demo Data" untuk melihat contoh v
 **Solusi:**
 1. Coba video lain dari daftar
 2. Refresh halaman
-3. Hubungi administrator
 
 #### Data Tidak Tersimpan
 **Penyebab:** Session berakhir tidak normal atau browser ditutup.
